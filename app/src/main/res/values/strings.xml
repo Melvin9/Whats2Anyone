@@ -1,0 +1,25 @@
+<resources>
+    <string name="app_name">Whatsapp2Anyone</string>
+    <string name="whatsapp2anyone">WHATS ANYONE</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="message">Message</string>
+    <string name="faq">FAQ</string>
+    <string name="enter_number">Enter number:</string>
+    <string name="enter_message">Enter message:</string>
+    <string name="donate">DONATE</string>
+    <string name="send">Send</string>
+    <string name="header">Header</string>
+    <string name="phone">phone</string>
+    <string name="donate_to_support_development">Donate to support development ;)</string>
+    <string name="email">email</string>
+    <string name="dollar">1$</string>
+    <string name="link">LINK</string>
+    <string name="rate">Rate</string>
+    <string name="about_us">About Us</string>
+    <string name="web">web</string>
+    <string name="url_start">https://wa.me/</string>
+    <string name="template_1">Template 1</string>
+    <string name="_2">2$</string>
+</resources>
