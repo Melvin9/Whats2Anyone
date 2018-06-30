@@ -1,8 +1,11 @@
 package com.ktu.dev.melvin.whatsanyone;
 
+import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.support.v7.app.ActionBar;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.DefaultItemAnimator;
@@ -10,6 +13,9 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.webkit.WebChromeClient;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.SeekBar;
@@ -25,7 +31,7 @@ public class MainActivity extends AppCompatActivity implements MainView {
     public static EditText number, message;
     TextView money;
     CountryCodePicker ccp;
-    ImageView send;
+    ImageView send,webBtn;
     SeekBar seekBar;
     int donate_money;
     private RecyclerView recyclerView;
@@ -41,6 +47,7 @@ public class MainActivity extends AppCompatActivity implements MainView {
         assert actionBar != null;
         actionBar.hide();
         number = findViewById(R.id.number);
+        webBtn = findViewById(R.id.web);
         money = findViewById(R.id.money);
         message = findViewById(R.id.main_message);
         send = findViewById(R.id.send);
@@ -91,8 +98,49 @@ public class MainActivity extends AppCompatActivity implements MainView {
 
             }
         });
+        webBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                final AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity.this);
+                WebView wv = new WebView(MainActivity.this);
+                wv.loadUrl("http:\\www.lmntrx.com");
+                wv.setWebChromeClient(new WebChromeClient() {
+                    private ProgressDialog mProgress;
+                    @Override
+                    public void onProgressChanged(WebView view, int progress) {
+                        if (mProgress == null) {
+                            mProgress = new ProgressDialog(MainActivity.this);
+                            mProgress.show();
+                        }
+                        mProgress.setMessage("Loading " + String.valueOf(progress) + "%");
+                        if (progress == 100) {
+                            mProgress.dismiss();
+                            mProgress = null;
+                        }
+                    }
+                });
+                wv.setWebViewClient(new WebViewClient() {
+                    @Override
+                    public boolean shouldOverrideUrlLoading(WebView view, String url) {
+                        view.loadUrl(url);
 
+                        return true;
+                    }
+                });
+
+                alert.setView(wv);
+                alert.setNegativeButton("Close", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int id) {
+                        dialog.dismiss();
+                    }
+                });
+                alert.show();
+                }
+
+            });
     }
+
 
     private void prepareList() {
         public_data a = new public_data("Hi I am Good");

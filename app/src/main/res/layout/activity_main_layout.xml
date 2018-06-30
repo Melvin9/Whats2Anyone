@@ -64,7 +64,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="bottom"
-                        android:layout_marginTop="5dp"
+                        android:layout_marginBottom="5dp"
                         android:background="@drawable/phone"
                         android:contentDescription="@string/phone" />
                     <LinearLayout
@@ -188,6 +188,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:id="@+id/web"
                 app:srcCompat="@drawable/home"
                 android:contentDescription="@string/web" />
             <ImageView
