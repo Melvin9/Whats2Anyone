@@ -184,23 +184,26 @@
             android:weightSum="4"
             android:padding="5dp"
             tools:ignore="UselessParent">
-            <ImageView
+            <ImageButton
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:background="@android:color/black"
                 android:id="@+id/web"
                 app:srcCompat="@drawable/home"
                 android:contentDescription="@string/web" />
-            <ImageView
+            <ImageButton
                 android:id="@+id/send"
                 android:layout_width="0dp"
+                android:background="@android:color/black"
                 android:layout_height="wrap_content"
                 android:layout_weight="2"
                 app:srcCompat="@drawable/send"
                 android:contentDescription="@string/send" />
-            <ImageView
+            <ImageButton
                 android:layout_width="0dp"
                 android:id="@+id/rate"
+                android:background="@android:color/black"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 app:srcCompat="@drawable/star"

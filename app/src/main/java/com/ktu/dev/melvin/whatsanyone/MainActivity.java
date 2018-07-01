@@ -16,6 +16,7 @@ import android.webkit.WebChromeClient;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.SeekBar;
 import android.widget.TextView;
@@ -31,7 +32,7 @@ public class MainActivity extends AppCompatActivity implements MainView {
     public static EditText number, message;
     TextView money;
     CountryCodePicker ccp;
-    ImageView send,webBtn,rate;
+    ImageButton send,webBtn,rate;
     SeekBar seekBar;
     int donate_money;
     private RecyclerView.Adapter adapter;
@@ -92,7 +93,6 @@ public class MainActivity extends AppCompatActivity implements MainView {
                 onRateClick();
             }
         });
-
     }
 
     @Override
@@ -177,7 +177,6 @@ public class MainActivity extends AppCompatActivity implements MainView {
     public void onRateClick() {
         startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id="+getPackageName())));
     }
-
     @Override
     public void onSeekBarChanged(int i) {
         switch (i) {
