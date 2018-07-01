@@ -19,6 +19,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.SeekBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.hbb20.CountryCodePicker;
 
@@ -161,9 +162,16 @@ public class MainActivity extends AppCompatActivity implements MainView {
 
     @Override
     public void onSendClick() {
-        String url = "https://wa.me/" + ccp.getSelectedCountryCode() + number.getText().toString().trim() + "?text=" + message.getText().toString().trim();
-        startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(url)));
-    }
+        if(number.getText().toString().length()>4&&number.getText().toString().length()<12){
+            if(message.getText().toString().isEmpty())
+                Toast.makeText(MainActivity.this, "Message Cannot be Empty", Toast.LENGTH_SHORT).show();
+            else{
+                String url = "https://wa.me/" + ccp.getSelectedCountryCode() + number.getText().toString().trim() + "?text=" + message.getText().toString().trim();
+                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(url)));
+            }
+        }
+        else Toast.makeText(MainActivity.this, "Number Not Valid", Toast.LENGTH_SHORT).show();
+       }
 
     @Override
     public void onRateClick() {
