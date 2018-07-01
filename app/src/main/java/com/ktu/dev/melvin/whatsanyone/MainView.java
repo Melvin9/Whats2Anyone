@@ -1,5 +1,11 @@
 package com.ktu.dev.melvin.whatsanyone;
 
 public interface MainView {
-    void showMessage(String Message);
+    void hideActionBar();
+    void prepareList();
+    void onWebBtnClick();
+    void onSendClick();
+    void onRateClick();
+    void onSeekBarChanged(int i);
+
 }

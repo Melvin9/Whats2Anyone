@@ -4,9 +4,9 @@ package com.ktu.dev.melvin.whatsanyone;
  * Created by Melvin on 12/20/2017.
  */
 
-public class public_data {
+public class Messages_Data {
     private String Message;
-    public public_data(String message) {
+    Messages_Data(String message) {
         Message = message;
     }
     public String getMessage() {
