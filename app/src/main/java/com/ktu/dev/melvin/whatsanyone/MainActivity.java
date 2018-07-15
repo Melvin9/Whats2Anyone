@@ -17,11 +17,13 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.MobileAds;
 import com.hbb20.CountryCodePicker;
 
 import java.util.ArrayList;
@@ -34,6 +36,7 @@ public class MainActivity extends AppCompatActivity implements MainView {
     CountryCodePicker ccp;
     ImageButton send,webBtn,rate;
     SeekBar seekBar;
+    RecyclerView recyclerView;
     int donate_money;
     private RecyclerView.Adapter adapter;
     private List<Messages_Data> data_main;
@@ -50,15 +53,15 @@ public class MainActivity extends AppCompatActivity implements MainView {
         ccp = findViewById(R.id.ccp);
         seekBar = findViewById(R.id.seekBar);
         rate = findViewById(R.id.rate);
-        RecyclerView recyclerView = findViewById(R.id.recyclerView);
+        hideActionBar();
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
+        recyclerView= findViewById(R.id.recyclerView);
         data_main = new ArrayList<>();
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(layoutManager);
         adapter = new Messages_Adapter(data_main, getApplicationContext());
         recyclerView.setAdapter(adapter);
         prepareList();
-        hideActionBar();
         send.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -93,6 +96,10 @@ public class MainActivity extends AppCompatActivity implements MainView {
                 onRateClick();
             }
         });
+        MobileAds.initialize(this, "ca-app-pub-5841415504299472~3573597901");
+        AdView mAdView = findViewById(R.id.adView);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        mAdView.loadAd(adRequest);
     }
 
     @Override

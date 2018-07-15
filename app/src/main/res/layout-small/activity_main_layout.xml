@@ -142,9 +142,16 @@
                 android:textColor="@android:color/white"
                 android:background="@drawable/buttonbackground"
                 android:text="@string/donate"/>
+            <com.google.android.gms.ads.AdView xmlns:ads="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/adView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                ads:adSize="SMART_BANNER"
+                ads:adUnitId="ca-app-pub-3940256099942544/6300978111" />
         </LinearLayout>
 
     </LinearLayout>
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -183,6 +190,7 @@
                 app:srcCompat="@drawable/star"
                 android:contentDescription="@string/rate" />
         </LinearLayout>
+
     </RelativeLayout>
 
 </RelativeLayout>
