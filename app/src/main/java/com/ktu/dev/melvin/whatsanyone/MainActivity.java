@@ -54,14 +54,8 @@ public class MainActivity extends AppCompatActivity implements MainView {
         seekBar = findViewById(R.id.seekBar);
         rate = findViewById(R.id.rate);
         hideActionBar();
-        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
-        recyclerView= findViewById(R.id.recyclerView);
-        data_main = new ArrayList<>();
-        recyclerView.setHasFixedSize(true);
-        recyclerView.setLayoutManager(layoutManager);
-        adapter = new Messages_Adapter(data_main, getApplicationContext());
-        recyclerView.setAdapter(adapter);
-        prepareList();
+        showCard();
+        showAdd();
         send.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -96,10 +90,6 @@ public class MainActivity extends AppCompatActivity implements MainView {
                 onRateClick();
             }
         });
-        MobileAds.initialize(this, "ca-app-pub-5841415504299472~3573597901");
-        AdView mAdView = findViewById(R.id.adView);
-        AdRequest adRequest = new AdRequest.Builder().build();
-        mAdView.loadAd(adRequest);
     }
 
     @Override
@@ -128,7 +118,6 @@ public class MainActivity extends AppCompatActivity implements MainView {
         data_main.add(a);
         adapter.notifyDataSetChanged();
     }
-
     @Override
     public void onWebBtnClick() {
         final AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity.this);
@@ -166,7 +155,6 @@ public class MainActivity extends AppCompatActivity implements MainView {
         });
         alert.show();
     }
-
     @Override
     public void onSendClick() {
         if(number.getText().toString().length()>4&&number.getText().toString().length()<12){
@@ -179,7 +167,6 @@ public class MainActivity extends AppCompatActivity implements MainView {
         }
         else Toast.makeText(MainActivity.this, "Number Not Valid", Toast.LENGTH_SHORT).show();
        }
-
     @Override
     public void onRateClick() {
         startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id="+getPackageName())));
@@ -201,6 +188,24 @@ public class MainActivity extends AppCompatActivity implements MainView {
                 break;
         }
         money.setText(String.format("%s$", String.valueOf(donate_money)));
+    }
+    @Override
+    public void showAdd() {
+        MobileAds.initialize(this, "ca-app-pub-5841415504299472~3573597901");
+        AdView mAdView = findViewById(R.id.adView);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        mAdView.loadAd(adRequest);
+    }
+    @Override
+    public void showCard() {
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
+        recyclerView= findViewById(R.id.recyclerView);
+        data_main = new ArrayList<>();
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(layoutManager);
+        adapter = new Messages_Adapter(data_main, getApplicationContext());
+        recyclerView.setAdapter(adapter);
+        prepareList();
     }
     @Override
     public void hideActionBar() {

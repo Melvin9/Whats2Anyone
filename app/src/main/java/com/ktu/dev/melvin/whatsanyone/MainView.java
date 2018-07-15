@@ -7,5 +7,7 @@ public interface MainView {
     void onSendClick();
     void onRateClick();
     void onSeekBarChanged(int i);
+    void showAdd();
+    void showCard();
 
 }
