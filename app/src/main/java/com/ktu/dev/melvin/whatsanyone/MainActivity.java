@@ -1,5 +1,4 @@
 package com.ktu.dev.melvin.whatsanyone;
-
 import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
@@ -15,17 +14,16 @@ import android.view.View;
 import android.webkit.WebChromeClient;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.MobileAds;
 import com.hbb20.CountryCodePicker;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -33,6 +31,7 @@ public class MainActivity extends AppCompatActivity implements MainView {
     @SuppressLint("StaticFieldLeak")
     public static EditText number, message;
     TextView money;
+    Button donate;
     CountryCodePicker ccp;
     ImageButton send,webBtn,rate;
     SeekBar seekBar;
@@ -40,58 +39,15 @@ public class MainActivity extends AppCompatActivity implements MainView {
     int donate_money;
     private RecyclerView.Adapter adapter;
     private List<Messages_Data> data_main;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_layout);
-        number = findViewById(R.id.number);
-        webBtn = findViewById(R.id.web);
-        money = findViewById(R.id.money);
-        message = findViewById(R.id.main_message);
-        send = findViewById(R.id.send);
-        ccp = findViewById(R.id.ccp);
-        seekBar = findViewById(R.id.seekBar);
-        rate = findViewById(R.id.rate);
+        initialDeclaration();
         hideActionBar();
         showCard();
         showAdd();
-        send.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-               onSendClick();
-            }
-        });
-        seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-            @Override
-            public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
-               onSeekBarChanged(i);
-            }
-
-            @Override
-            public void onStartTrackingTouch(SeekBar seekBar) {
-
-            }
-
-            @Override
-            public void onStopTrackingTouch(SeekBar seekBar) {
-
-            }
-        });
-        webBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-               onWebBtnClick();
-                }
-            });
-        rate.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                onRateClick();
-            }
-        });
     }
-
     @Override
     public void prepareList() {
         Messages_Data a = new Messages_Data("Hi I am Good");
@@ -206,6 +162,62 @@ public class MainActivity extends AppCompatActivity implements MainView {
         adapter = new Messages_Adapter(data_main, getApplicationContext());
         recyclerView.setAdapter(adapter);
         prepareList();
+    }
+    @Override
+    public void initialDeclaration() {
+        number = findViewById(R.id.number);
+        webBtn = findViewById(R.id.web);
+        money = findViewById(R.id.money);
+        message = findViewById(R.id.main_message);
+        send = findViewById(R.id.send);
+        ccp = findViewById(R.id.ccp);
+        seekBar = findViewById(R.id.seekBar);
+        donate=findViewById(R.id.donate);
+        rate = findViewById(R.id.rate);
+        send.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onSendClick();
+            }
+        });
+        seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
+                onSeekBarChanged(i);
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+
+            }
+        });
+        webBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onWebBtnClick();
+            }
+        });
+        rate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onRateClick();
+            }
+        });
+        donate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onDonate();
+            }
+        });
+    }
+    @Override
+    public void onDonate() {
+        Toast.makeText(MainActivity.this,"Thanks For Your Support\nDonate feature will be implemented in next update",Toast.LENGTH_SHORT).show();
     }
     @Override
     public void hideActionBar() {

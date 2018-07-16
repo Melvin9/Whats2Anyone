@@ -19,7 +19,7 @@ import java.util.List;
 public class Messages_Adapter extends RecyclerView.Adapter<Messages_Adapter.ViewHolder> {
     private List<Messages_Data> listitems;
     private Context context;
-    public Messages_Adapter(List<Messages_Data> listitems, Context context) {
+    Messages_Adapter(List<Messages_Data> listitems, Context context) {
         this.listitems = listitems;
         this.context = context;
     }
@@ -31,7 +31,6 @@ public class Messages_Adapter extends RecyclerView.Adapter<Messages_Adapter.View
         return new ViewHolder(v);
 
     }
-
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
@@ -43,7 +42,6 @@ public class Messages_Adapter extends RecyclerView.Adapter<Messages_Adapter.View
     public int getItemCount() {
         return listitems.size();
     }
-
     class ViewHolder extends RecyclerView.ViewHolder {
             TextView message;
             Messages_Data feed;
@@ -57,10 +55,8 @@ public class Messages_Adapter extends RecyclerView.Adapter<Messages_Adapter.View
                             MainActivity.message.setText(feed.getMessage());
                         }catch (Exception ignored){
                         }
-
                     }
                 });
-
             }
         }
 

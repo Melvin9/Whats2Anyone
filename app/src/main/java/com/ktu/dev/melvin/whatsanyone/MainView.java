@@ -9,5 +9,6 @@ public interface MainView {
     void onSeekBarChanged(int i);
     void showAdd();
     void showCard();
-
+    void initialDeclaration();
+    void onDonate();
 }
