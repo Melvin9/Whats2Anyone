@@ -12,6 +12,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.webkit.WebChromeClient;
+import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.Button;
@@ -74,11 +75,22 @@ public class MainActivity extends AppCompatActivity implements MainView {
         data_main.add(a);
         adapter.notifyDataSetChanged();
     }
+    @SuppressLint("SetJavaScriptEnabled")
     @Override
     public void onWebBtnClick() {
         final AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity.this);
+
         WebView wv = new WebView(MainActivity.this);
-        wv.loadUrl("http:\\www.lmntrx.com");
+        wv.loadUrl("https://melvin9.github.io/");
+        WebSettings webSettings = wv.getSettings();
+        webSettings.setJavaScriptEnabled(true);
+        webSettings.setDomStorageEnabled(true);
+        webSettings.setLoadWithOverviewMode(true);
+        webSettings.setUseWideViewPort(true);
+        webSettings.setBuiltInZoomControls(true);
+        webSettings.setDisplayZoomControls(false);
+        webSettings.setSupportZoom(true);
+        webSettings.setDefaultTextEncodingName("utf-8");
         wv.setWebChromeClient(new WebChromeClient() {
             private ProgressDialog mProgress;
             @Override
