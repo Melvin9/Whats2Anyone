@@ -1,4 +1,4 @@
-package com.ktu.dev.melvin.whatsanyone;
+package com.melvin9.whatsapp.direct.message.whatsanyone;
 
 public interface MainView {
     void hideActionBar();
