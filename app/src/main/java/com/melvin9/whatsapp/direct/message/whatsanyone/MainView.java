@@ -6,9 +6,7 @@ public interface MainView {
     void onWebBtnClick();
     void onSendClick();
     void onRateClick();
-    void onSeekBarChanged(int i);
     void showAdd();
     void showCard();
     void initialDeclaration();
-    void onDonate();
 }

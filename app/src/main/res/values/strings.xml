@@ -22,4 +22,12 @@
     <string name="url_start">https://wa.me/</string>
     <string name="template_1">Template 1</string>
     <string name="_2">2$</string>
+    <string name="imagestatus">ImageStatus</string>
+    <string name="download">DOWNLOAD</string>
+    <string name="title_activity_base">BaseActivity</string>
+    <string name="recent_statuses">RECENT STATUSES</string>
+    <string name="send1">SEND</string>
+    <string name="about_us1">ABOUT US</string>
+    <string name="saved_status">SAVED STATUS</string>
+    <string name="like">LIKE</string>
 </resources>

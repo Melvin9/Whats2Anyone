@@ -7,7 +7,6 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -18,37 +17,36 @@ import android.webkit.WebViewClient;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.SeekBar;
-import android.widget.TextView;
 import android.widget.Toast;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.MobileAds;
 import com.hbb20.CountryCodePicker;
+import com.melvin9.whatsapp.direct.message.whatsanyone.base.BaseActivity;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity implements MainView {
+public class MainActivity extends BaseActivity implements MainView {
     @SuppressLint("StaticFieldLeak")
+
     public static EditText number, message;
-    TextView money;
     Button donate;
     CountryCodePicker ccp;
-    ImageButton send,webBtn,rate;
-    SeekBar seekBar;
+    Button send,resc_status,saved;
+    ImageButton webBtn,rate;
     RecyclerView recyclerView;
-    int donate_money;
     private RecyclerView.Adapter adapter;
     private List<Messages_Data> data_main;
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_layout);
         initialDeclaration();
         hideActionBar();
         showCard();
         showAdd();
+
     }
     @Override
     public void prepareList() {
@@ -56,7 +54,7 @@ public class MainActivity extends AppCompatActivity implements MainView {
         data_main.add(a);
         a = new Messages_Data("Hey how r u?");
         data_main.add(a);
-        a = new Messages_Data("Hello");
+        a = new Messages_Data("I didn't Save Your Number");
         data_main.add(a);
         a = new Messages_Data("Hey");
         data_main.add(a);
@@ -64,7 +62,7 @@ public class MainActivity extends AppCompatActivity implements MainView {
         data_main.add(a);
         a = new Messages_Data("Long Time No see");
         data_main.add(a);
-        a = new Messages_Data("I didn't Save Your Number");
+        a = new Messages_Data("Hello");
         data_main.add(a);
         a = new Messages_Data("Do i know you?");
         data_main.add(a);
@@ -141,24 +139,6 @@ public class MainActivity extends AppCompatActivity implements MainView {
         startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id="+getPackageName())));
     }
     @Override
-    public void onSeekBarChanged(int i) {
-        switch (i) {
-            case 0:
-                donate_money = 1;
-                break;
-            case 1:
-                donate_money = 2;
-                break;
-            case 2:
-                donate_money = 3;
-                break;
-            case 3:
-                donate_money = 5;
-                break;
-        }
-        money.setText(String.format("%s$", String.valueOf(donate_money)));
-    }
-    @Override
     public void showAdd() {
         MobileAds.initialize(this, "ca-app-pub-5841415504299472~3573597901");
         AdView mAdView = findViewById(R.id.adView);
@@ -180,33 +160,22 @@ public class MainActivity extends AppCompatActivity implements MainView {
     public void initialDeclaration() {
         number = findViewById(R.id.number);
         webBtn = findViewById(R.id.web);
-        money = findViewById(R.id.money);
         message = findViewById(R.id.main_message);
         send = findViewById(R.id.send);
+        resc_status = findViewById(R.id.recent_status);
         ccp = findViewById(R.id.ccp);
-        seekBar = findViewById(R.id.seekBar);
-        donate=findViewById(R.id.donate);
+        saved = findViewById(R.id.saved_status);
         rate = findViewById(R.id.rate);
+        resc_status.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(MainActivity.this,RecentStatus.class));
+            }
+        });
         send.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 onSendClick();
-            }
-        });
-        seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-            @Override
-            public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
-                onSeekBarChanged(i);
-            }
-
-            @Override
-            public void onStartTrackingTouch(SeekBar seekBar) {
-
-            }
-
-            @Override
-            public void onStopTrackingTouch(SeekBar seekBar) {
-
             }
         });
         webBtn.setOnClickListener(new View.OnClickListener() {
@@ -221,16 +190,13 @@ public class MainActivity extends AppCompatActivity implements MainView {
                 onRateClick();
             }
         });
-        donate.setOnClickListener(new View.OnClickListener() {
+        saved.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                onDonate();
+                startActivity(new Intent(MainActivity.this,SavedStatus.class));
+
             }
         });
-    }
-    @Override
-    public void onDonate() {
-        Toast.makeText(MainActivity.this,"Thanks For Your Support\nDonate feature will be implemented in next update",Toast.LENGTH_SHORT).show();
     }
     @Override
     public void hideActionBar() {
